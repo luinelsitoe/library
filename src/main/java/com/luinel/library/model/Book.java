@@ -44,6 +44,8 @@ public class Book {
   @NonNull
   private Genre genre;
 
+  private String coverPath;
+
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
   @ToString.Exclude
   private Rating rating;
