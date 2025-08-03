@@ -44,6 +44,10 @@ public class Book {
   @NonNull
   private Genre genre;
 
+  @Column(nullable = false)
+  @NonNull
+  private String bookPath;
+
   private String coverPath;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
