@@ -9,6 +9,7 @@ Este projecto é um biblioteca online simples. Usuarios podem visualizar livros 
 ## Funcionalidades
 
 - Visualização de todos livros disponiveis
+- Filtrar livros por titulo, autor e genero
 - Criação de coleções de livros
 - Baixar livros para leitura offline
 - Fazer review de livros

@@ -1,4 +1,4 @@
-package com.luinel.library.model;
+package com.luinel.library.model.enums;
 
 public enum Genre {
   FICCAO,

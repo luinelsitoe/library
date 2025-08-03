@@ -1,5 +1,7 @@
 package com.luinel.library.model;
 
+import com.luinel.library.model.enums.Genre;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

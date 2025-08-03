@@ -35,6 +35,9 @@ public class User {
   @NonNull
   private String password;
 
+  @Column(nullable = false)
+  private String role;
+
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   @ToString.Exclude
   private List<Collection> booksCollections = new ArrayList<>();
