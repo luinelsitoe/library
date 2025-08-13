@@ -40,5 +40,5 @@ public class User {
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   @ToString.Exclude
-  private List<Collection> booksCollections = new ArrayList<>();
+  private List<BookCollection> booksCollections = new ArrayList<>();
 }
