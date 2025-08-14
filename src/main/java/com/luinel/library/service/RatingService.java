@@ -31,10 +31,10 @@ public class RatingService {
       return "Livro avaliado!";
     } else {
       var book = bookRepository.findById(bookId)
-          .orElseThrow(() -> new EntityNotFoundException("Livro não encotrado!"));
+          .orElseThrow(() -> new EntityNotFoundException("Livro não encotrado"));
 
       var user = userRepository.findById(userId)
-          .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado!"));
+          .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
 
       var rating = new Rating(user, book, ratingValue);
       book.setRating(rating);

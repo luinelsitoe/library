@@ -23,13 +23,13 @@ public class BookCollectionService {
 
   private BookCollection findCollection(Long collectionId, Long userId) {
     return collectionRepository.findByIdAndUserId(collectionId, userId)
-        .orElseThrow(() -> new EntityNotFoundException("Coleção não encontrada!"));
+        .orElseThrow(() -> new EntityNotFoundException("Coleção não encontrada"));
   }
 
   public String createCollection(String name, Long userId) {
     var collection = new BookCollection();
     var user = userRepository.findById(userId)
-        .orElseThrow(() -> new EntityNotFoundException("Usuario não encotrado!"));
+        .orElseThrow(() -> new EntityNotFoundException("Usuario não encotrado"));
 
     collection.setName(name);
     collection.setUser(user);

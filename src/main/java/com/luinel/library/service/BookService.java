@@ -73,23 +73,24 @@ public class BookService {
     return "Livro removido!";
   }
 
-  private String uploadFile(MultipartFile file, String folderName, String successMessage) {
+  private void uploadFile(MultipartFile file, String folderName) {
     try {
       Path destination = Paths.get("/uploads", folderName, file.getOriginalFilename());
       Files.createDirectories(destination.getParent());
       Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
-      return successMessage;
     } catch (IOException ex) {
       throw new UploadFileException("Erro ao salvar ficheiro: " + file.getOriginalFilename(), ex);
     }
   }
 
   public String uploadBookFile(MultipartFile bookFile) {
-    return uploadFile(bookFile, "book-files", "Ficheiro do livro salvo!");
+    uploadFile(bookFile, "book-files");
+    return "Ficheiro do livro salvo!";
   }
 
   public String uploadCoverFile(MultipartFile coverFile) {
-    return uploadFile(coverFile, "cover-files", "Capa salva!");
+    uploadFile(coverFile, "cover-files");
+    return "Capa salva!";
   }
 
 }

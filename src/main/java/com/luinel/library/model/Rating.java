@@ -38,19 +38,21 @@ public class Rating {
   @Column(nullable = false)
   private int rating;
 
-  public Rating(@NonNull User user, @NonNull Book book, int rating) {
+  private void verifyRate(int rating) {
     if (rating > 5 || rating < 1) {
       throw new InvalidRatingException("Avaliação fora da faixa!");
     }
+  }
+
+  public Rating(@NonNull User user, @NonNull Book book, int rating) {
+    verifyRate(rating);
     this.user = user;
     this.book = book;
     this.rating = rating;
   }
 
   public void setRating(int rating) {
-    if (rating > 5 || rating < 1) {
-      throw new InvalidRatingException("Avaliação fora da faixa!");
-    }
+    verifyRate(rating);
     this.rating = rating;
   }
 }
