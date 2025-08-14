@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.luinel.library.model.BookCollection;
 
 @Repository
-public interface CollectionRepository extends JpaRepository<BookCollection, Long> {
+public interface BookCollectionRepository extends JpaRepository<BookCollection, Long> {
   List<BookCollection> findAllByUserId(Long userId);
 
   Optional<BookCollection> findByIdAndUserId(Long collectionId, Long userId);

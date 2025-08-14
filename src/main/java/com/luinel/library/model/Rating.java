@@ -40,17 +40,16 @@ public class Rating {
 
   public Rating(@NonNull User user, @NonNull Book book, int rating) {
     if (rating > 5 || rating < 1) {
-      throw new InvalidRatingException("Avaliação fora da faixa");
+      throw new InvalidRatingException("Avaliação fora da faixa!");
     }
     this.user = user;
     this.book = book;
     this.rating = rating;
-    this.id = new RatingId(user.getId(), book.getId());
   }
 
   public void setRating(int rating) {
     if (rating > 5 || rating < 1) {
-      throw new InvalidRatingException("Avaliação fora da faixa");
+      throw new InvalidRatingException("Avaliação fora da faixa!");
     }
     this.rating = rating;
   }
