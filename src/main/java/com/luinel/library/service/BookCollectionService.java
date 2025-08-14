@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luinel.library.model.BookCollection;
-import com.luinel.library.repository.CollectionRepository;
+import com.luinel.library.repository.BookCollectionRepository;
+import com.luinel.library.repository.BookRepository;
 import com.luinel.library.repository.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -16,8 +17,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class BookCollectionService {
-  private final CollectionRepository collectionRepository;
+  private final BookCollectionRepository collectionRepository;
   private final UserRepository userRepository;
+  private final BookRepository bookRepository;
+
+  private BookCollection findCollection(Long collectionId, Long userId) {
+    return collectionRepository.findByIdAndUserId(collectionId, userId)
+        .orElseThrow(() -> new EntityNotFoundException("Coleção não encontrada!"));
+  }
 
   public String createCollection(String name, Long userId) {
     var collection = new BookCollection();
@@ -30,6 +37,26 @@ public class BookCollectionService {
     return "Coleção criada!";
   }
 
+  public String addToCollection(Long collectionId, Long userId, Long bookId) {
+    var collection = findCollection(collectionId, userId);
+    var book = bookRepository.findById(bookId)
+        .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado!"));
+
+    collection.getBooks().add(book);
+    collectionRepository.save(collection);
+    return "Livro adicionado a " + collection.getName() + "!";
+  }
+
+  public String removeFromCollection(Long collectionId, Long userId, Long bookId) {
+    var collection = findCollection(collectionId, userId);
+    var book = bookRepository.findById(bookId)
+        .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado!"));
+
+    collection.getBooks().remove(book);
+    collectionRepository.save(collection);
+    return "Livro removido de " + collection.getName() + "!";
+  }
+
   public List<BookCollection> getAllUserCollections(Long userId) {
     return collectionRepository.findAllByUserId(userId);
   }
@@ -39,8 +66,7 @@ public class BookCollectionService {
   }
 
   public BookCollection getCollection(Long collectionId, Long userId) {
-    return collectionRepository.findByIdAndUserId(collectionId, userId)
-        .orElseThrow(() -> new EntityNotFoundException("Coleção não encontrada!"));
+    return findCollection(collectionId, userId);
   }
 
   public String deleteCollection(Long collectionId, Long userId) {
