@@ -26,10 +26,10 @@ import lombok.RequiredArgsConstructor;
 public class BookService {
   private final BookRepository bookRepository;
 
-  public String publishBook(BookForm bookForm) {
+  public String createBook(BookForm bookForm) {
     var book = bookForm.toBook();
     bookRepository.save(book);
-    return "Livro publicado!";
+    return "Livro criado!";
   }
 
   private Book findBook(Long bookId) {
@@ -84,12 +84,12 @@ public class BookService {
   }
 
   public String uploadBookFile(MultipartFile bookFile) {
-    uploadFile(bookFile, "book-files");
+    uploadFile(bookFile, "books");
     return "Ficheiro do livro salvo!";
   }
 
   public String uploadCoverFile(MultipartFile coverFile) {
-    uploadFile(coverFile, "cover-files");
+    uploadFile(coverFile, "covers");
     return "Capa salva!";
   }
 

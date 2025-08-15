@@ -1,6 +1,7 @@
 package com.luinel.library.model.enums;
 
 public enum Genre {
+  TECNOLOGIA,
   FICCAO,
   NAO_FICCAO,
   MISTERIO,

@@ -1,5 +1,8 @@
 package com.luinel.library.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.luinel.library.model.enums.Genre;
 
 import jakarta.persistence.CascadeType;
@@ -41,6 +44,7 @@ public class Book {
   private String description;
 
   @Enumerated(EnumType.STRING)
+  @Column(length = 50, nullable = false)
   @NonNull
   private Genre genre;
 
@@ -52,5 +56,5 @@ public class Book {
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
   @ToString.Exclude
-  private Rating rating;
+  private List<Rating> rating = new ArrayList<>();
 }

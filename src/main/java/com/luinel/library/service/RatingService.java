@@ -37,7 +37,7 @@ public class RatingService {
           .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado"));
 
       var rating = new Rating(user, book, ratingValue);
-      book.setRating(rating);
+      book.getRating().add(rating);
 
       bookRepository.save(book);
       ratingRepository.save(rating);
@@ -46,7 +46,7 @@ public class RatingService {
   }
 
   public Double getBookRating(Long bookId) {
-    return ratingRepository.findAvarageRatingByBookId(bookId);
+    return ratingRepository.findAverageRatingByBookId(bookId);
   }
 
 }
