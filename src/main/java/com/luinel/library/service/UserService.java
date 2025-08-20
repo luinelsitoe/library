@@ -41,6 +41,10 @@ public class UserService {
     userRepository.save(user);
   }
 
+  public User findByUser(Long userId) {
+    return findUser(userId);
+  }
+
   public String createBaseUser(UserForm userForm) {
     createUser(userForm, "USER");
     return "Usuario criado!";

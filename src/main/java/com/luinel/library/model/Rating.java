@@ -49,6 +49,7 @@ public class Rating {
     this.user = user;
     this.book = book;
     this.rating = rating;
+    this.id = new RatingId(user.getId(), book.getId());
   }
 
   public void setRating(int rating) {

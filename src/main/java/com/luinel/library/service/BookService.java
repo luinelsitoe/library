@@ -75,11 +75,11 @@ public class BookService {
 
   private void uploadFile(MultipartFile file, String folderName) {
     try {
-      Path destination = Paths.get("/uploads", folderName, file.getOriginalFilename());
+      Path destination = Paths.get("uploads", folderName, file.getOriginalFilename());
       Files.createDirectories(destination.getParent());
       Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
     } catch (IOException ex) {
-      throw new UploadFileException("Erro ao salvar ficheiro: " + file.getOriginalFilename(), ex);
+      throw new UploadFileException("Erro ao salvar ficheiro - " + file.getOriginalFilename(), ex);
     }
   }
 
